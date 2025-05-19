@@ -11,5 +11,12 @@ namespace Test.Generics
         {
             Assert.Throws<ArgumentNullException>(() => new SafeBox<string>(null));
         }
+
+        [Fact]
+        public void SafeBox_ShouldStoreValueCorrectly()
+        {
+            var safeBox = new SafeBox<string>("hola");
+            Assert.Equal("hola", safeBox.Value);
+        }
     }
 }

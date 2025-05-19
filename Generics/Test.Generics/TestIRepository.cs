@@ -19,6 +19,13 @@ namespace Test.Generics
         {
             // TODO: Complete the test
             // Assert.Null(result);
+
+            var repository = new MemoryRepository<string>();
+            repository.Add("Hola");
+
+            var result = repository.Find(99);
+
+            Assert.Null(result);
         }
     }
 
