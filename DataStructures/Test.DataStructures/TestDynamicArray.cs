@@ -80,5 +80,17 @@ namespace Test.DataStructures
 
             Assert.Throws<ArgumentOutOfRangeException>(() => dynamicArray.RemoveAt(index));
         }
+
+        [Fact]
+        public void Contains_ShouldReturnTrueIfExists()
+        {
+            var dynamicArray = new DynamicArray<string>();
+            dynamicArray.Add("Carlos");
+            dynamicArray.Add("Sergio");
+
+            Assert.True(dynamicArray.Contains("Carlos"));
+            Assert.False(dynamicArray.Contains("Fabricio"));
+        }
+
     }
 }

@@ -131,6 +131,14 @@
         {
             var result = new T[_count];
             // TODO: Turn to array the linked list
+            var current = _head;
+            int index = 0;
+
+            while (current != null)
+            {
+                result[index++] = current.Value;
+                current = current.Next;
+            }
 
             return result;
         }

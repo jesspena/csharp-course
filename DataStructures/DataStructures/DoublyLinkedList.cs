@@ -134,7 +134,15 @@ namespace DataStructures
         public T[] ToArray()
         {
             var result = new T[_count];
-            // Turn to array the linked list
+
+            var current = _head;
+            int i = 0;
+
+            while (current != null)
+            {
+                result[i++] = current.Value;
+                current = current.Next;
+            }
 
             return result;
         }
@@ -144,8 +152,21 @@ namespace DataStructures
         {
             var result = new T[_count];
             // Turn to array the linked list but start from the tail
+            var current = _tail;
+            int i = 0;
+
+            while (current != null)
+            {
+                result[i++] = current.Value;
+                current = current.Prev;
+            }
 
             return result;
+        }
+
+        public int Count()
+        {
+            return _count;
         }
     }
 }
