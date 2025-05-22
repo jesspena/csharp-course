@@ -3,7 +3,7 @@
     // List
     // TODO: Define constraints based on existing unit tests
     // OPTIONAL: Enhance the logic if possible
-    public class DynamicArray<T>
+    public class DynamicArray<T> where T : IEquatable<T>
     {
         private T[] _data;
         private int _count;
@@ -84,6 +84,18 @@
             {
                 throw new ArgumentOutOfRangeException(nameof(index));
             }
+        }
+
+        public bool Contains(T item)
+        {
+            for (int i = 0; i < _count; i++)
+            {
+                if (_data[i]!.Equals(item))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
