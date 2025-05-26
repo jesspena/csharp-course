@@ -56,7 +56,17 @@
         {
             // TODO: Convertir a array
 
-            return default!;
+            var result = new T[_count];
+            var current = _top;
+            int index = 0;
+
+            while (current != null)
+            {
+                result[index++] = current.Value;
+                current = current.Next;
+            }
+
+            return result;
         }
     }
 }
