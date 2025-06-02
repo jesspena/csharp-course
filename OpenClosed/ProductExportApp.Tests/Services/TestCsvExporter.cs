@@ -31,4 +31,36 @@ public class TestCsvExporter
   }
   
   // TODO: Add tests for the other exporter types.
+  [Fact]
+  public void Export_ProducesJsonOutput()
+  {
+    var exporter = new JsonExporter();
+
+    var result = exporter.Export(_products);
+
+    var expected = """
+    [
+      {
+        "Id": 1,
+        "Name": "Laptop",
+        "Price": 7999.99,
+        "Category": "Electronics"
+      },
+      {
+        "Id": 2,
+        "Name": "Desk",
+        "Price": 4999.99,
+        "Category": "Furniture"
+      },
+      {
+        "Id": 3,
+        "Name": "Fork",
+        "Price": 2999.99,
+        "Category": "Kitchen"
+      }
+    ]
+    """;
+
+    Assert.Equal(expected.Trim(), result.Trim());
+  }
 }
