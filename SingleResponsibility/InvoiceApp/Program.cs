@@ -10,6 +10,7 @@ var services = builder.Services;
 services.AddSingleton<IInvoiceParser, InvoiceParser>();
 services.AddSingleton<IInvoiceCalculator, InvoiceCalculator>();
 services.AddSingleton<IReportFormatter, AsciiReportFormatter>();
+services.AddSingleton<IArgumentValidator, Validator>();
 services.AddSingleton<InvoiceCli>();
 
 using var host = builder.Build();
