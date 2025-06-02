@@ -54,4 +54,20 @@ public class TestNotificationFacade
   }
 
   // TODO: Negative scenario
+  [Fact]
+  public void Notify_FacadeShouldNotCallAnyChannel_WhenAllFlagsFalse()
+  {
+      var email = new StubEmail();
+      var sms = new StubSms();
+      var push = new StubPush();
+      var facade = new NotificationFacade(email, sms, push);
+
+      var orderEvent = new OrderEvent(99,"Lucia","Delivered", false,false,false,"lucia@jalasoft.com","+59170000000", "token123");
+
+      facade.Notify(orderEvent);
+
+      Assert.False(email.Called);
+      Assert.False(sms.Called);
+      Assert.False(push.Called);
+  }
 }
