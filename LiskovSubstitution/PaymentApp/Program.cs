@@ -13,6 +13,12 @@ services.AddSingleton<ICharger, PayPalPayment>();
 services.AddSingleton<IRefunder, PayPalPayment>();
 services.AddSingleton<ICharger, BitcoinPayment>();
 
+// Registrar UserNotifier
+services.AddSingleton<IUserNotifier, UserNotifier>();
+
+// Registrar OrderProvider
+services.AddSingleton<IOrderProvider, SampleOrderProvider>();
+
 services.AddSingleton<IPaymentRouter, PaymentRouter>();
 services.AddSingleton<PaymentCli>();
 
