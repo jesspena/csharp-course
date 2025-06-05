@@ -1,3 +1,5 @@
+using DocumentProcessor.Interfaces;
+
 namespace DocumentProcessor.Services;
 
 public abstract class DocumentProcessorFactory
