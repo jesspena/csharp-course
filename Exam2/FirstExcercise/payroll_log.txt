@@ -1,0 +1,3 @@
+6/5/2025 6:10:20 PM: Paid John Doe $5500.00
+6/5/2025 6:10:20 PM: Paid Jane Smith $2600.00
+6/5/2025 6:10:20 PM: Paid Bob Johnson $4000.00
