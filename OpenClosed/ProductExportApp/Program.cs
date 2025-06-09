@@ -12,6 +12,7 @@ services.AddSingleton<IProductExporter, CsvExporter>();
 services.AddSingleton<IProductExporter, XmlExporter>();
 // TODO: Add exporter for YAML format
 services.AddSingleton<IExporterFactory, ExporterFactory>();
+services.AddSingleton<IFormatValidator, FormatValidator>();
 services.AddSingleton<ProductExportCli>();
 
 using var host = builder.Build();

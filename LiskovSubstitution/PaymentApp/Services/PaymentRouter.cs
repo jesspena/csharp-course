@@ -2,10 +2,12 @@ using PaymentApp.Interfaces;
 
 namespace PaymentApp.Services;
 
-public class PaymentRouter(IEnumerable<ICharger> chargers, IEnumerable<IRefunder> refunders) : IPaymentRouter
+public class PaymentRouter(IEnumerable<ICharger> chargers, IEnumerable<IRefunder> refunders,
+        IUserNotifier notifier) : IPaymentRouter
 {
   private readonly Dictionary<string, ICharger> _chargers = chargers.ToDictionary(c => c.GetType().Name[..^7].ToLower());
   private readonly Dictionary<string, IRefunder> _refunders = refunders.ToDictionary(r => r.GetType().Name[..^7].ToLower());
+  private readonly IUserNotifier _notifier = notifier;
 
   public void Charge(string method, decimal amount, string reference)
   {
@@ -15,22 +17,13 @@ public class PaymentRouter(IEnumerable<ICharger> chargers, IEnumerable<IRefunder
   // TODO: Enhance this method apply simple Single Responsibility Principle
   public bool TryRefund(string method, decimal amount, string reference)
   {
-    var isRefunderAvailable = _refunders.TryGetValue(method, out var refunder);
+    if (_refunders.TryGetValue(method, out var refunder))
+        {
+            refunder!.Refund(amount, reference);
+            return true;
+        }
 
-    if (isRefunderAvailable)
-    {
-      refunder!.Refund(amount, reference);
-    }
-    else
-    {
-      ShowRefundNotSupportedMessage(method);
-    }
-
-    return isRefunderAvailable;
-  }
-
-  private static void ShowRefundNotSupportedMessage(string method)
-  {
-    Console.WriteLine($"Refund not supported for method {method}.");
+        _notifier.ShowRefundNotSupported(method);
+        return false;
   }
 }

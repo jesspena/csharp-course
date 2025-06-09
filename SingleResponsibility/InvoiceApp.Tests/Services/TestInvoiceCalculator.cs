@@ -33,4 +33,18 @@ public class TestInvoiceCalculator
   }
 
   // TODO: Add negative test cases
+
+  [Fact]
+    public void Validate_Throws_WhenEmptyArgs()
+    {
+        var validator = new Validator();
+        Assert.Throws<ArgumentException>(() => validator.Validate([]));
+    }
+
+    [Fact]
+    public void Validate_Passes_WhenValidArgs()
+    {
+        var validator = new Validator();
+        validator.Validate(["{ \"invoices\": [] }"]);
+    }
 }

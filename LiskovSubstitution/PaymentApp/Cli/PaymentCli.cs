@@ -4,51 +4,38 @@ using PaymentApp.Models;
 
 namespace PaymentApp.Cli;
 
-public class PaymentCli(IPaymentRouter paymentRouter)
+public class PaymentCli(IPaymentRouter paymentRouter, IOrderProvider orderProvider, IUserNotifier notifier)
 {
   private readonly IPaymentRouter _paymentRouter = paymentRouter;
+  private readonly IOrderProvider _orderProvider = orderProvider;
+  private readonly IUserNotifier _notifier = notifier;
 
   public void Run(string[] args)
   {
-    // TODO: Implement validation for input arguments
-    var json = args.Length > 0 ? args[0] : SampleData();
-    var orders = JsonSerializer.Deserialize<List<Order>>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
+    var orders = _orderProvider.GetOrders(args);
 
     foreach (var order in orders)
     {
       _paymentRouter.Charge(order.Method, order.Amount, order.Reference);
     }
 
-    Console.WriteLine("\n--- Cancel & refund second order ---");
+    if (orders.Count() >= 2)
+    {
+        _notifier.Notify("\n--- Cancel & refund second order ---");
 
-    var cancelledOrder = orders[1];
-    _paymentRouter.TryRefund(cancelledOrder.Method, cancelledOrder.Amount, cancelledOrder.Reference);
+        var cancelledOrder = orders.ElementAt(1);
+        var refunded = _paymentRouter.TryRefund(cancelledOrder.Method, cancelledOrder.Amount, cancelledOrder.Reference);
+
+        if (refunded)
+        {
+            _notifier.ShowRefundSuccess(cancelledOrder.Reference);
+        }
+    }
+    else
+    {
+        _notifier.Notify("Not enough orders to cancel the second one.");
+    }
   }
 
   // TODO: Delete this method and add validations
-  public static string SampleData()
-  {
-    return """
-    [
-      {
-        "id": "A1",
-        "method": "bitcoin",
-        "amount": 100.00,
-        "reference": "TX1234567890"
-      },
-      {
-        "id": "B2",
-        "method": "creditcard",
-        "amount": 50.00,
-        "reference": "CC1234567890"
-      },
-      {
-        "id": "C3",
-        "method": "paypal",
-        "amount": 75.00,
-        "reference": "PP1234567890"
-      }
-    ]
-    """;
-  }
 }
