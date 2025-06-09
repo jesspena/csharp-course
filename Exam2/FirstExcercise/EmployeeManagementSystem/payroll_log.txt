@@ -1,0 +1,6 @@
+6/9/2025 3:18:22 PM: Paid John Doe $5500.00
+6/9/2025 3:18:22 PM: Paid Jane Smith $2600.00
+6/9/2025 3:18:22 PM: Paid Bob Johnson $4000.00
+6/9/2025 3:38:18 PM: Paid John Doe $5500.00
+6/9/2025 3:38:18 PM: Paid Jane Smith $2600.00
+6/9/2025 3:38:18 PM: Paid Bob Johnson $4000.00
