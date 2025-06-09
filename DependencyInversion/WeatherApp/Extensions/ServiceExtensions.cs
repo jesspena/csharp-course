@@ -10,6 +10,7 @@ public static class ServiceExtensions
   public static IServiceCollection AddCliServices(this IServiceCollection services, string useDefault = "true")
   {
     services.AddSingleton<HttpClient>();
+    services.AddSingleton<HttpService>();
     services.AddWeatherProviders(useDefault);
     services.AddSingleton<WeatherCli>();
 
@@ -20,10 +21,12 @@ public static class ServiceExtensions
   {
     if (useDefault == "true")
     {
+      services.AddSingleton<IHttpService, HttpService>();
       services.AddSingleton<IWeatherProvider, HttpWeatherProvider>();
     }
     else
     {
+      services.AddSingleton<IHttpService, HttpService>();
       services.AddSingleton<IWeatherProvider, SecondHttpWeatherProvider>();
     }
 
