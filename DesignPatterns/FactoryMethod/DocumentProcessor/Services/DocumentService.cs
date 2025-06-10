@@ -7,7 +7,8 @@ public class DocumentService
   {
       { "pdf", new PdfProcessorFactory() },
       { "word", new WordProcessorFactory() },
-      { "excel", new ExcelProcessorFactory() }
+      { "excel", new ExcelProcessorFactory() },
+      { "ppt", new PptProcessorFactory() }
   };
 
   public void ProcessDocument(string documentType, string content)

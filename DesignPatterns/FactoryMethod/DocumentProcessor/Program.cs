@@ -34,7 +34,9 @@ public class Program
     {
       new { Type = "pdf", Content = "Important PDF contract content"},
       new { Type = "word", Content = "Meeting notes and action items"},
-      new { Type = "excel", Content = "Financial data in tables"}
+      new { Type = "excel", Content = "Financial data in tables"},
+      //adding the new format
+      new { Type = "ppt", Content = "Presentation"}
     };
 
     foreach (var document in documentExamples)
