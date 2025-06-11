@@ -5,23 +5,17 @@ namespace CrossPlatform.Components;
 // TODO: Complete implement interface
 public sealed class LinuxCheckBox : ICheckBox
 {
+  private bool _checked;
   public void Check(bool isChecked)
   {
-    throw new NotImplementedException();
+    _checked = isChecked;
   }
 
-  public string GetStyle()
-  {
-    throw new NotImplementedException();
-  }
-
-  public bool IsChecked()
-  {
-    throw new NotImplementedException();
-  }
+  public string GetStyle()  => "Linux CheckBox";
+  public bool IsChecked() => _checked;
 
   public void Render()
   {
-    throw new NotImplementedException();
+    Console.WriteLine($"Rendering Linux CheckBox - Checked: {_checked}");
   }
 }

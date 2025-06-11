@@ -5,18 +5,18 @@ namespace CrossPlatform.Components;
 // TODO: Complete implement interface
 public sealed class MacOSButton : IButton
 {
+  private bool _pressed;
   public void Click()
   {
-    throw new NotImplementedException();
+    _pressed = !_pressed;
+    Console.WriteLine($"MacOs Button clicked - State: {(_pressed ? "Pressed" : "Released")}");
+    
   }
 
-  public string GetTheme()
-  {
-    throw new NotImplementedException();
-  }
+  public string GetTheme() => "MacOs";
 
   public void Render()
   {
-    throw new NotImplementedException();
+    Console.WriteLine("Rendering MacOs Button using MacOs theme");
   }
 }

@@ -5,23 +5,19 @@ namespace CrossPlatform.Components;
 // TODO: Complete implement interface
 public sealed class WindowsTextBox : ITextBox
 {
-  public string GetFont()
-  {
-    throw new NotImplementedException();
-  }
-
-  public string GetText()
-  {
-    throw new NotImplementedException();
-  }
-
-  public void Render()
-  {
-    throw new NotImplementedException();
-  }
+  private string _text = "";
 
   public void SetText(string text)
   {
-    throw new NotImplementedException();
+    _text = text;
+  }
+
+  public string GetText() => _text;
+
+  public string GetFont() => "Ubuntu Mono";
+
+  public void Render()
+  {
+    Console.WriteLine($"Rendering Linux TextBox with text: {_text}");
   }
 }
