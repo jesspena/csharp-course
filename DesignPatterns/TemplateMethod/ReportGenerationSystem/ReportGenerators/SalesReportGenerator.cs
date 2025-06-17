@@ -1,11 +1,12 @@
 using ReportGenerationSystem.Interfaces;
 using ReportGenerationSystem.Templates;
+using ReportGenerationSystem.Factories;
 
 namespace ReportGenerationSystem.ReportGenerators;
 
 public class SalesReportGenerator(IReportFormatStrategy? formatStrategy = null) : ReportGenerator(formatStrategy)
 {
-  protected override string GetReportType() => "Sales";
+  protected override ReportType GetReportType() => ReportType.Sales;
 
   protected override string[] FectchData()
   {

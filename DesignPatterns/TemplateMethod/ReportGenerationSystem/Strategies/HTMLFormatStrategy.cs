@@ -1,14 +1,15 @@
 using ReportGenerationSystem.Interfaces;
+using ReportGenerationSystem.Factories;
 
 namespace ReportGenerationSystem.Strategies;
 
 public class HTMLFormatStrategy : IReportFormatStrategy
 {
-  public string GetFormatName() => "HTML";
+  public ReportFormat GetFormatName() => ReportFormat.HTML;
 
   public string GetFileExtension() => ".html";
 
-  public string FormatReport(List<string> processedData, string reportType)
+  public string FormatReport(List<string> processedData, ReportType reportType)
   {
     Console.WriteLine($"Formatting {reportType} report as HTML...");
 

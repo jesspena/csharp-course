@@ -1,4 +1,5 @@
 using ReportGenerationSystem.Interfaces;
+using ReportGenerationSystem.Factories;
 
 namespace ReportGenerationSystem.Strategies;
 
@@ -6,11 +7,11 @@ public class CSVFormatStrategy(string delimiter = ",") : IReportFormatStrategy
 {
   private readonly string _delimiter = delimiter;
 
-  public string GetFormatName() => "CSV";
+  public ReportFormat GetFormatName() => ReportFormat.CSV;
 
   public string GetFileExtension() => ".csv";
 
-  public string FormatReport(List<string> processedData, string reportType)
+  public string FormatReport(List<string> processedData, ReportType reportType)
   {
     Console.WriteLine($"Formatting {reportType} report as CSV with delimiter '{_delimiter}'...");
 

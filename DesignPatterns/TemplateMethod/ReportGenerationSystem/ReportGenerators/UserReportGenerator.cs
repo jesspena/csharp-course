@@ -1,11 +1,12 @@
 using ReportGenerationSystem.Interfaces;
 using ReportGenerationSystem.Templates;
+using ReportGenerationSystem.Factories;
 
 namespace ReportGenerationSystem.ReportGenerators;
 
 public class UserReportGenerator(IReportFormatStrategy? formatStrategy = null) : ReportGenerator(formatStrategy)
 {
-  protected override string GetReportType() => "User";
+  protected override ReportType GetReportType() => ReportType.User;
 
   protected override string[] FectchData()
   {

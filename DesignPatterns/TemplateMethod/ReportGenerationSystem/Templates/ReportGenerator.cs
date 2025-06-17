@@ -1,5 +1,6 @@
 using ReportGenerationSystem.Interfaces;
 using ReportGenerationSystem.Strategies;
+using ReportGenerationSystem.Factories;
 
 namespace ReportGenerationSystem.Templates;
 
@@ -27,7 +28,7 @@ public abstract class ReportGenerator(IReportFormatStrategy? formatStrategy = nu
   }
 
   // TODO: Convert into enum (the report type)
-  protected abstract string GetReportType();
+  protected abstract ReportType GetReportType();
   protected abstract string[] FectchData();
   protected abstract List<string> ProcessedData(string[] rawData);
   // protected abstract string FormatReport(List<string> processedData);
